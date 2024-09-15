@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="flex flex-col justify-center">
+    <h1 class="text-5xl mb-2">Autor</h1>
+    <p>Nome: {{ autor.nome }}</p>
+    <p>Criado em: {{ autor.criado_em }}</p>
+    <a href="{% url 'autores' %}" class="p-2 rounded-sm bg-purple-800 hover:bg-purple-500 hover:text-white">
+        Voltar
+    </a>
+</div>
+{% endblock %}
