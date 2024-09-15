@@ -17,6 +17,12 @@ class Autor(models.Model):
         str
         '''
         return str(self.nome)
+   
+    class Meta:
+        '''
+        Meta Autor
+        '''
+        db_table = 'autor'
 
 
 class Livro(models.Model):
@@ -32,6 +38,12 @@ class Livro(models.Model):
         '''
         return str(self.titulo)
 
+    class Meta:
+            '''
+            Meta Livro
+            '''
+            db_table = 'livro'
+
 
 class LivrosDoAutor(models.Model):
     '''
@@ -42,3 +54,10 @@ class LivrosDoAutor(models.Model):
 
     def __str__(self):
         return f"Livro {self.livro} do autor {self.autor}"
+    
+    class Meta:
+        '''
+        Meta LivrosDoAutor
+        '''
+        db_table = 'livros_do_autor'
+

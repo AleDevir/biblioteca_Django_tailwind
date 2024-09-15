@@ -14,3 +14,14 @@ python manage.py runserver
 pylint --load-plugins pylint_django --django-settings-module=biblioteca.settings biblioteca app_biblioteca
 
 ```
+## migrations
+
+### registrar as alterações em migrations
+```
+python manage.py makemigrations app_biblioteca
+```
+
+### Aplicar as alterações de migrations no db
+```
+python manage.py migrate
+```
