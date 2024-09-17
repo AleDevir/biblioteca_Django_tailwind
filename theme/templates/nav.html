@@ -1,6 +1,15 @@
+{% load static %}
+{% static 'imgs/logo.avif' as image_url %}
+
+
+
 <header>
-    <nav class="flex justify-center space-x-4 mt-5">
-        <a href="/" class="font-bold px-3 py-2 text-slate-400 rounded-lg hover:bg-slate-300 hover:text-slate-900">Home</a>
-        <a href="{% url 'autores' %}" class="font-bold px-3 py-2 text-slate-400 rounded-lg hover:bg-slate-300 hover:text-slate-900">Autores</a>
+    <nav class="flex  space-x-4 mt-5">
+      <a href="/" class="ml-4">
+        <img src="{{image_url}}" width="50px" class="text-slate-300 rounded-full" >
+
+      </a>
+        <a href="/" class="font-bold p-2 text-purple-600 rounded-lg hover:bg-purple-400 hover:text-slate-900">Home</a>
+        <a href="{% url 'autores' %}" class="font-bold p-2 text-purple-600 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
       </nav>
 </header>

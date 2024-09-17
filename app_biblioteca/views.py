@@ -9,8 +9,7 @@ from django.shortcuts import (
     HttpResponseRedirect,
 )
 from django.urls import reverse
-
-from .models import Autor
+from .models import Autor, LivrosDoAutor
 
 def home(request) -> HttpResponse:
     '''
@@ -30,9 +29,10 @@ def autor(request, autor_id: int) -> HttpResponse:
         raise Http404(
             f"Autor não encontrado! O autor de ID={autor_id} não existe na base de dados."
         ) from not_found
-
+    livros_autor = LivrosDoAutor.objects.filter(autor_id=autor_id)
     contexto = {
-        'autor': um_autor
+        'autor': um_autor,
+        'livros': livros_autor
     }
     return render(request, 'autor.html', context=contexto)
 

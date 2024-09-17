@@ -16,3 +16,4 @@ admin.site.register([
     Livro,
     LivrosDoAutor
 ])
+

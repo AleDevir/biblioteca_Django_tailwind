@@ -103,3 +103,8 @@ from .models import Autor
 
 admin.site.register(Autor)
 ```
+
+## Biblioteca para uso de imagens no db:
+```
+python -m pip install Pillow
+```
