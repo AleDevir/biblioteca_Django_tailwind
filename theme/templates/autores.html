@@ -2,19 +2,18 @@
 {% block content %}
 {% load static %}
 {% static 'imgs/autores' as autor_url %}
-{% if autores %}
-  
-<div class="flex justify-center mt-24">
-<div class="grid gap-x-8 gap-y-4 grid-cols-3 ">
+
+  <div class=" flex flex-col items-center justify-center mt-11 z-10 ">
+    <h1 class="text-2xl text-purple-500 opacity-5 mb-5  ">Nossos Autores</h1>
+    {% if autores %}
+    <div class=" p-6 grid md:grid-cols-4 lg:grid-cols-6 gap-4 gap-y-8">
     {% for autor in autores %}
       
-            <div class="p-2 text-center flex flex-col items-center rounded-md bg-purple-900 hover:bg-purple-500 "> 
+            <div class="p-2 text-center flex flex-col items-center rounded-md bg-purple-900 hover:bg-purple-500 w-11">
+       
+                    <img src="{{autor_url}}/{{autor.id}}.jpg"  class="img_autor  rounded-lg" alt="{{autor.nome}}" >    
                 
-                <a href="{% url 'autor' autor.id %}" class="flex flex-col items-center justify-center">
-                    <img src="{{autor_url}}/{{autor.id}}.jpg" width="50px" class="rounded-md " alt="imagem do autor" >   
-
-                    {{ autor.nome }}
-                </a>
+                <a href="{% url 'autor' autor.id %}" class="sm:text-center">{{ autor.nome }}</a>
             </div>        
     {% endfor %}
     </div>
