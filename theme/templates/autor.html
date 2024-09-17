@@ -1,11 +1,57 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="flex flex-col justify-center">
-    <h1 class="text-5xl mb-2">Autor</h1>
-    <p>Nome: {{ autor.nome }}</p>
-    <p>Criado em: {{ autor.criado_em }}</p>
-    <a href="{% url 'autores' %}" class="p-2 rounded-sm bg-purple-800 hover:bg-purple-500 hover:text-white">
-        Voltar
-    </a>
+{% load static %}
+{% static 'imgs/capas' as capa_url %}
+
+<div class="flex flex-col items-center">   
+    
+    <h1 class="text-3xl mb-11 text-purple-500 opacity-5"> {{ autor.nome }}</h1>
 </div>
+
+<div class="mb-5 flex flex-col items-center">
+        
+   
+    <div class="relative overflow-x-auto w-auto">
+        <a href="{% url 'autores' %}" class=" p-2 rounded-md mb-4 bg-purple-800 hover:bg-purple-500 hover:text-white">
+            Voltar
+        </a>
+     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700  dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                   Título
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ano da Primeira publicação
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   Capas
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livro_autor in livros %}
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+            <td class="px-6 py-4 ">
+                {{ livro_autor.livro.titulo }}
+            </td>
+            <td class="px-6 py-4">
+                {{ livro_autor.livro.ano}}
+            </td>
+            <td class="px-6 py-4">
+             
+                <img src="{{capa_url}}/{{livro_autor.livro.id}}.jpg" width="50px"/>    
+             
+            </td>
+            
+        </tr>
+        {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+
+
 {% endblock %}

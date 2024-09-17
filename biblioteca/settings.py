@@ -125,6 +125,8 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # https://django-tailwind.readthedocs.io/en/latest/installation.html
@@ -134,7 +136,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = '/usr/local/bin/npm'
+NPM_BIN_PATH = 'npm.cmd'
 # Obtendo o path do NPM automaticamente
 # from shutil import which
 # NPM_BIN_PATH = which("npm")

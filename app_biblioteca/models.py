@@ -12,6 +12,8 @@ class Autor(models.Model):
     nome = models.CharField('Nome do Autor', max_length=30)
     criado_em = models.DateTimeField('criado')
 
+   
+
     def __str__(self):
         '''
         str
@@ -30,7 +32,10 @@ class Livro(models.Model):
     Livro
     '''
     titulo = models.CharField('Título do Livro', max_length=30)
-    criado_em = models.DateTimeField('criado')
+    criado_em = models.DateField('criado', help_text='yyyy/mm/dd')
+    ano = models.IntegerField('ano da publicação', default=2024)
+   
+
 
     def __str__(self):
         '''
@@ -53,7 +58,7 @@ class LivrosDoAutor(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Livro {self.livro} do autor {self.autor}"
+        return f"Livro: {self.livro} | autor: {self.autor}"
     
     class Meta:
         '''
