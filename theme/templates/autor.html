@@ -3,20 +3,15 @@
 {% load static %}
 {% static 'imgs/capas' as capa_url %}
 
-<div class="flex flex-col items-center">   
+<div class="flex flex-col items-center mt-11">   
     
-    <h1 class="text-3xl mb-11 text-purple-500 opacity-5"> {{ autor.nome }}</h1>
+    <h1 class="text-2xl text-purple-500 opacity-5 mb-5"> {{ autor.nome }}</h1>
 </div>
 
 <div class="mb-5 flex flex-col items-center">
-        
-   
-    <div class="relative overflow-x-auto w-auto">
-        <a href="{% url 'autores' %}" class=" p-2 rounded-md mb-4 bg-purple-800 hover:bg-purple-500 hover:text-white">
-            Voltar
-        </a>
+    <div class="m-5 overflow-x-auto w-auto">
      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700  dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-purple-800  dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                    Título
@@ -25,13 +20,13 @@
                     Ano da Primeira publicação
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   Capas
+                   Capa
                 </th>
             </tr>
         </thead>
         <tbody>
         {% for livro_autor in livros %}
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-purple-800 text-center">
             <td class="px-6 py-4 ">
                 {{ livro_autor.livro.titulo }}
             </td>
@@ -49,6 +44,9 @@
             </tbody>
           </table>
     </div>
+    <a href="{% url 'autores' %}" class=" mt-11 mb-5 p-2 rounded-md  bg-purple-800 hover:bg-purple-500 hover:text-white">
+        Voltar
+    </a>
 </div>
 
 
