@@ -9,7 +9,8 @@ from django.shortcuts import (
     HttpResponseRedirect,
 )
 from django.urls import reverse
-from .models import Autor, LivrosDoAutor
+from .models import Autor, LivrosDoAutor, Livro
+from .forms import PesquisarLivroForm
 
 def home(request) -> HttpResponse:
     '''
@@ -112,3 +113,43 @@ def autores(request) -> HttpResponse:
         'autores': lista
     }
     return render(request, 'autores.html', context=contexto)
+
+def livros(request) -> HttpResponse:
+    '''
+   livros
+    '''
+    if request.method == "POST":
+  
+        titulo = request.POST['titulo']
+        lista = Livro.objects.filter(titulo=titulo)
+        if lista:
+            # return render(request, 'livro.html', { "livro": lista[0] })
+            return HttpResponseRedirect(reverse("livro", args=(lista[0].id,)))
+        return Http404(f"O livro de título {titulo} não encontrado!")
+    else:
+        lista = Livro.objects.all()
+        form = PesquisarLivroForm()
+    return render(request, 'livros.html', {
+        "form": form,
+        "livros": lista,
+    })
+
+def livro(request, livro_id: int) -> HttpResponse:
+    '''
+    livro
+    '''
+    try:
+        um_livro = Livro.objects.get(pk=livro_id)
+    except Livro.DoesNotExist as not_found:
+        print(not_found)
+        raise Http404(
+            f"Livro não encontrado! O Livro de ID={livro_id} não existe na base de dados."
+        ) from not_found
+    
+    livros_autor = LivrosDoAutor.objects.filter(livro_id=livro_id)
+    contexto = {
+        'livro': um_livro,
+        'autores': livros_autor
+    }
+
+    return render(request, 'livro.html', context=contexto)

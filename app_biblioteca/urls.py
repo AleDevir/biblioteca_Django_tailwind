@@ -16,4 +16,7 @@ urlpatterns = [
     path("autor_save/<int:autor_id>", views.autor_save, name='autor_save'),
     path("autor_delete/<int:autor_id>", views.autor_delete, name='autor_delete'),
     path("autores/", views.autores, name='autores'),
+    path("livros/", views.livros, name='livros'),
+    path("livro/<int:livro_id>", views.livro, name='livro'),
+ 
 ]

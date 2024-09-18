@@ -90,7 +90,6 @@ python manage.py check
 ```
 
 
-
 ## 10. Area administrativa: criando um usuário administrativo
 ```
 python manage.py createsuperuser
@@ -107,4 +106,10 @@ admin.site.register(Autor)
 ## Biblioteca para uso de imagens no db:
 ```
 python -m pip install Pillow
+```
+
+[crispy-tailwind](https://github.com/django-crispy-forms/crispy-tailwind)
+## Formuario Django:
+```
+python -m pip install crispy-tailwind
 ```

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,9 @@ NPM_BIN_PATH = 'npm.cmd'
 # NPM_BIN_PATH = which("npm")
 
 # DJANGO_SETTINGS_MODULE='app_biblioteca.app.settings pylint --load-plugins pylint_django .'
+
+
+# https://github.com/django-crispy-forms/crispy-tailwind
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
