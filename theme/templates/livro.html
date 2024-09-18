@@ -19,5 +19,8 @@
     {% for autor in autores %}
     <p>Autor(s):{{autor.autor}}</p>
     {% endfor %}
+    <div>
+        <img src="{{capa_url}}/{{livro.id}}.jpg"  class="mt-2 rounded-lg" alt="{{livro.titulo}}" width="150px">
+    </div>
 </div>
 {% endblock %}
