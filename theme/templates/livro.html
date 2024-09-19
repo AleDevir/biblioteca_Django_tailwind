@@ -13,14 +13,16 @@
 
             <p class="p-4 min-w-full mr-3 text-justify">
             {{livro.informacaoes}}
+            {% if livro.fonte_informacao %}
             <a href="{{livro.fonte_informacao}}" target="_blank" class="ml-3 text-purple-400"> Fonte </a>
+            {% endif %}
             </p>
     </div>
     {% for autor in autores %}
-    <p>Autor(s):{{autor.autor}}</p>
+    <p>Autor(s): {{autor.autor}}</p>
     {% endfor %}
     <div>
-        <img src="{{capa_url}}/{{livro.id}}.jpg"  class="mt-2 rounded-lg" alt="{{livro.titulo}}" width="150px">
+        <img src="{{capa_url}}/{{livro.id}}.jpg"  class=" mt-2 rounded-lg" alt="{{livro.titulo}}" width="150px">
     </div>
 </div>
 {% endblock %}

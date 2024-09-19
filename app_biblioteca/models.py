@@ -28,7 +28,6 @@ class Autor(models.Model):
         '''
         db_table = 'autor'
 
-
 class Livro(models.Model):
     '''
     Livro
@@ -53,7 +52,6 @@ class Livro(models.Model):
         '''
         db_table = 'livro'
 
-
 class LivrosDoAutor(models.Model):
     '''
     Livros do Autor
@@ -69,4 +67,5 @@ class LivrosDoAutor(models.Model):
         Meta LivrosDoAutor
         '''
         db_table = 'livros_do_autor'
+
 

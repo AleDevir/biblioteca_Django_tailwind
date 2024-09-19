@@ -18,6 +18,11 @@ def home(request) -> HttpResponse:
     '''
     return render(request, 'home.html')
 
+def erro500(request) -> HttpResponse:
+    '''
+    erro 500
+    '''
+    return 1/0
 
 def autor(request, autor_id: int) -> HttpResponse:
     '''
@@ -119,16 +124,14 @@ def livros(request) -> HttpResponse:
    livros
     '''
     if request.method == "POST":
-  
         titulo = request.POST['titulo']
-        lista = Livro.objects.filter(titulo=titulo)
+        lista = Livro.objects.filter(titulo__icontains=titulo)
         if lista:
-            # return render(request, 'livro.html', { "livro": lista[0] })
             return HttpResponseRedirect(reverse("livro", args=(lista[0].id,)))
-        return Http404(f"O livro de título {titulo} não encontrado!")
-    else:
-        lista = Livro.objects.all()
-        form = PesquisarLivroForm()
+        raise Http404(f"O livro de título {titulo} não encontrado!")
+
+    lista = Livro.objects.all()
+    form = PesquisarLivroForm()
     return render(request, 'livros.html', {
         "form": form,
         "livros": lista,
@@ -141,11 +144,11 @@ def livro(request, livro_id: int) -> HttpResponse:
     try:
         um_livro = Livro.objects.get(pk=livro_id)
     except Livro.DoesNotExist as not_found:
-        print(not_found)
+        print(f"not_found 404 {not_found}")
         raise Http404(
             f"Livro não encontrado! O Livro de ID={livro_id} não existe na base de dados."
         ) from not_found
-    
+   
     livros_autor = LivrosDoAutor.objects.filter(livro_id=livro_id)
     contexto = {
         'livro': um_livro,

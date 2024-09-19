@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load static %}
+{% static 'imgs/erro/404.webp' as not_found_url %}
+
+<div class=" flex flex-col items-center justify-center ">
+    <p class="text-gray-400 mt-11 text-2xl">Not Found</p>
+    <img src="{{not_found_url}}" class="rounded-full opacity-50" width="450"/>  
+    
+</div>
+
+{% endblock %}
