@@ -18,5 +18,5 @@ urlpatterns = [
     path("autores/", views.autores, name='autores'),
     path("livros/", views.livros, name='livros'),
     path("livro/<int:livro_id>", views.livro, name='livro'),
- 
+    path("erro500/", views.erro500, name='erro500'),
 ]

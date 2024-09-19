@@ -14,8 +14,11 @@
 
         <p class="p-4 min-w-full mr-3 text-justify">
         {{autor.informacaoes}}
+        {% if autor.fonte_informacao %}
         <a href="{{autor.fonte_informacao}}" target="_blank" class="ml-3 text-purple-400"> Fonte </a>
-        </p>
+        {% endif %}
+    </p>
+       
 </div>
 
 </div>
