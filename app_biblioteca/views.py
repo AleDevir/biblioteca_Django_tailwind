@@ -7,22 +7,35 @@ from django.shortcuts import (
     render,
     HttpResponse,
     HttpResponseRedirect,
+    redirect
 )
 from django.urls import reverse
+from django.contrib.auth import login
+# from .forms import CustomUserCreationForm
 from .models import Autor, LivrosDoAutor, Livro
-from .forms import PesquisarLivroForm
+from .forms import PesquisarLivroForm, RegistrationForm
+
+def sign_up(request):
+    '''
+    sign_up
+    '''
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = RegistrationForm()
+    return render(request, 'register.html', {'form': form})
+
+
 
 def home(request) -> HttpResponse:
     '''
     Home
     '''
     return render(request, 'home.html')
-
-def erro500(request) -> HttpResponse:
-    '''
-    erro 500
-    '''
-    return 1/0
 
 def autor(request, autor_id: int) -> HttpResponse:
     '''
@@ -42,7 +55,6 @@ def autor(request, autor_id: int) -> HttpResponse:
     }
     return render(request, 'autor.html', context=contexto)
 
-
 def autor_delete(request, autor_id: int) -> HttpResponse:
     '''
     Autor
@@ -58,7 +70,6 @@ def autor_delete(request, autor_id: int) -> HttpResponse:
 
     return HttpResponseRedirect(reverse("autores"))
 
-
 def autor_add(request) -> HttpResponse:
     '''
     Autor
@@ -67,7 +78,6 @@ def autor_add(request) -> HttpResponse:
         'autor': Autor.objects.create(criado_em=datetime.now())
     }
     return render(request, 'autor_edit.html', context=contexto)
-
 
 def autor_edit(request, autor_id: int) -> HttpResponse:
     '''
@@ -85,7 +95,6 @@ def autor_edit(request, autor_id: int) -> HttpResponse:
         'autor': um_autor
     }
     return render(request, 'autor_edit.html', context=contexto)
-
 
 def autor_save(request, autor_id: int) -> HttpResponse:
     '''
@@ -108,7 +117,6 @@ def autor_save(request, autor_id: int) -> HttpResponse:
     um_autor.save()
     return HttpResponseRedirect(reverse("autor", args=(autor_id,)))
 
-
 def autores(request) -> HttpResponse:
     '''
     Autores
@@ -125,9 +133,10 @@ def livros(request) -> HttpResponse:
     '''
     if request.method == "POST":
         titulo = request.POST['titulo']
-        lista = Livro.objects.filter(titulo__icontains=titulo)
-        if lista:
-            return HttpResponseRedirect(reverse("livro", args=(lista[0].id,)))
+        # lista = Livro.objects.filter(titulo__icontains=titulo)
+        um_livro = Livro.objects.filter(titulo__icontains=titulo).first()
+        if um_livro:
+            return HttpResponseRedirect(reverse("livro", args=(um_livro.id,)))
         raise Http404(f"O livro de título {titulo} não encontrado!")
 
     lista = Livro.objects.all()
@@ -156,3 +165,19 @@ def livro(request, livro_id: int) -> HttpResponse:
     }
 
     return render(request, 'livro.html', context=contexto)
+
+
+# def register(request):
+#     '''
+#     Registro
+#     '''
+#     if request.method == 'POST':
+#         form = CustomUserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = CustomUserCreationForm()
+#     return render(request, 'register.html', {'form': form})
+

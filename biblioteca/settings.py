@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 
@@ -152,3 +152,11 @@ NPM_BIN_PATH = 'npm.cmd'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+#https://docs.djangoproject.com/pt-br/5.1/topics/email/#email-backends
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
+# AUTH_USER_MODEL = 'app_biblioteca.CustomUser'

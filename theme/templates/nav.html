@@ -1,14 +1,13 @@
 {% load static %}
-{% static 'imgs/logo.avif' as image_url %}
+{% static 'icones/login.png' as login_url %}
 
+<div class="w-full">
+    <nav class="flex  flex-row space-x-4 p-2  bg-purple-800 opacity-95">
+        <a href="/" class="font-bold p-1  text-purple-300 rounded-md hover:bg-purple-400 hover:text-slate-900">Home</a>
+        <a href="{% url 'autores' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
+        <a href="{% url 'livros' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Livros</a>
+        <a href="{% url 'sign_up' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Sign</a>
+        <!-- <a href="{% url 'login' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900"><img src="{{ login_url}}" width="30"/></a> -->
 
-
-<header>
-
-    <nav class=" flex  flex-row space-x-4 m-4 p-2 j">
-        <a href="/" class="font-bold p-1  text-purple-600 rounded-md hover:bg-purple-400 hover:text-slate-900">Home</a>
-        <a href="{% url 'autores' %}" class="font-bold p-1 text-purple-600 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
-        <a href="{% url 'livros' %}" class="font-bold p-1 text-purple-600 rounded-lg hover:bg-purple-400 hover:text-slate-900">Livros</a>
       </nav>
-      
-</header>
+</div>
