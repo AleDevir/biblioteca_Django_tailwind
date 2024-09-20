@@ -18,5 +18,6 @@ urlpatterns = [
     path("autores/", views.autores, name='autores'),
     path("livros/", views.livros, name='livros'),
     path("livro/<int:livro_id>", views.livro, name='livro'),
-    path("erro500/", views.erro500, name='erro500'),
+    path("register/", views.sign_up, name='sign_up'),
+    # path("login/", views.login, name='login'),
 ]

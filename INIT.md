@@ -39,7 +39,7 @@ python manage.py tailwind start
 
 ## 06. Criar uma rota e página para o caminho root (http://127.0.0.1:8000/)
 ```
-# 06.1 Criar página de layout em views.py em 'app_biblioteca'
+# 06.1 Criar página de base em views.py em 'app_biblioteca'
 # 06.2 Criar a rota em urls.py na pasta 'biblioteca'
 ```
 

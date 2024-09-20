@@ -1,14 +1,26 @@
 '''
 Modulo Forms
 '''
-from typing import Any
-from django import forms
 
-from django.forms import ModelForm
-from .models import Livro, LivrosDoAutor
+# from django import forms
+from django.forms import EmailField, ModelForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+# from .models import CustomUser
+from .models import Livro
 
 
-
+class RegistrationForm(UserCreationForm):
+    '''
+    Registra Usuário
+    '''
+    email = EmailField(required=True)
+    class Meta:
+        '''
+        Metamodelo
+        '''
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 class PesquisarLivroForm(ModelForm):
     '''
@@ -20,15 +32,3 @@ class PesquisarLivroForm(ModelForm):
         '''
         model = Livro
         fields = ['id', 'titulo']
-
-class AutorForm(forms.Form):
-    '''
-    Formulario Autor  
-    '''
-    # class Meta:
-    #     '''
-    #     Metamodelo
-    #     '''
-    #     model = LivrosDoAutor
-    #     fields = ['id', 'autor', 'livro']
-   
