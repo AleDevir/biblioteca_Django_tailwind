@@ -7,7 +7,7 @@ python manage.py tailwind start
 ```
 python manage.py runserver
 
-# Para usar moelo django exceptions usando o style css:
+# Para usar  modelo django exceptions usando o style css:
 python manage.py runserver --insecure
 
 ```
