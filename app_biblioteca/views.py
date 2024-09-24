@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Autor, LivrosDoAutor, Livro
 from .forms import PesquisarLivroForm, RegistrationForm, PesquisarAutorForm
 
+
 def sign_up(request):
     '''
     sign_up
@@ -115,7 +116,6 @@ def autor_save(request, autor_id: int) -> HttpResponse:
     um_autor.save()
     return HttpResponseRedirect(reverse("autor", args=(autor_id,)))
 
-
 def autores(request) -> HttpResponse:
     '''
     Autores
@@ -133,7 +133,6 @@ def autores(request) -> HttpResponse:
         "form": form,
         "autores": lista,
     })
-
 
 def livros(request) -> HttpResponse:
     '''
@@ -153,7 +152,7 @@ def livros(request) -> HttpResponse:
         "livros": lista,
     })
 
-@login_required
+
 def livro(request, livro_id: int) -> HttpResponse:
     '''
     livro
@@ -172,5 +171,4 @@ def livro(request, livro_id: int) -> HttpResponse:
     }
 
     return render(request, 'livro.html', context=contexto)
-
 

@@ -22,21 +22,6 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-# class LoginUserForm(AuthenticationForm):
-#     '''
-#     Login
-#     '''
-#     def confirm_login_allowed(self, user):
-#         user = User
-#         if user:
-#             return user
-#     class Meta:
-#         '''
-#         Metamodelo
-#         '''
-#         model = User
-#         fields = ['username', 'password']
-
 
 class PesquisarLivroForm(ModelForm):
     '''
