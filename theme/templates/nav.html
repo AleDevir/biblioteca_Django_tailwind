@@ -1,13 +1,29 @@
 {% load static %}
 {% static 'icones/login.png' as login_url %}
+{% static 'icones/logout.png' as logout_url %}
 
-<div class="w-full">
-    <nav class="flex  flex-row space-x-4 p-2  bg-purple-800 opacity-95">
+<div class="w-full fixed">
+    <nav class="flex flex-row space-x-4 p-2 justify-between bg-purple-800 items-center ">
+      {% if user.is_authenticated %}
+      
+      <a href="/" class="font-bold p-1  text-purple-300 rounded-md hover:bg-purple-400 hover:text-slate-900">Home</a>
+      <a href="{% url 'autores' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
+        <a href="{% url 'livros' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Livros</a>        
+        <a href="{% url 'password_change' %}" class="p-1 has-tooltip font-bold text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900" href="/">
+        <p class=" p-1 tooltip font-bold text-purple-300 rounded-lg  mt-5"> Meus dados
+        
+        </p> 
+        Olá, {{ user.get_username }}
+        </a>
+        
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+        <button type="submit" class="p-1"><img src="{{ logout_url}}" width="25"/></button>
+        </form>
+        {% else %}
         <a href="/" class="font-bold p-1  text-purple-300 rounded-md hover:bg-purple-400 hover:text-slate-900">Home</a>
-        <a href="{% url 'autores' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
-        <a href="{% url 'livros' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Livros</a>
         <a href="{% url 'sign_up' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Sign</a>
-        <!-- <a href="{% url 'login' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900"><img src="{{ login_url}}" width="30"/></a> -->
-
-      </nav>
+        <a href="{% url 'login' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900"><img src="{{ login_url}}" width="25"/></a>
+      {% endif %}
+    </nav>
 </div>

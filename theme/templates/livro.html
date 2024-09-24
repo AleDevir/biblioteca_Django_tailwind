@@ -2,27 +2,37 @@
 {% block content %}
 {% load static %}
 {% static 'imgs/capas' as capa_url %}
-{% static 'imgs/logos/4.svg' as logo_url %}
 
 <div class="flex flex-col items-center justify-center">
-    <div class=" flex  mt-5 ">
-       <p class="text-2xl text-purple-400 mb-5 first-letter:text-7xl first-letter first-letter:float-left:align-middle">{{livro.titulo}}</p>     
+    <div class=" flex  mt-11 ">
+       <p class="text-2xl text-purple-400 mb-3 first-letter:text-5xl first-letter first-letter:float-left:align-middle">{{livro.titulo}}</p>     
     </div>
-    <div class="flex flex-row w-1/2  p-4 mx-8">
-        <img src="{{logo_url}}" width="100px" alt="mulher abrindo livro" class="mb-5 mr-2"/> 
+    <img src="{{capa_url}}/{{livro.id}}.jpg"  class=" mt-4 rounded-lg " alt="{{livro.titulo}}" width="100px">
+    <a href="javascript:history.back()"class=" mt-2 text-2xl text-purple-800 hover:text-purple-500 ">
+        <<
+    </a> 
+    <div class="flex flex-row w-1/2  p-1 ">
 
-            <p class="p-4 min-w-full mr-3 text-justify">
+            <p class="p-4 min-w-full mr-3 text-justify first-line:tracking-widest
+  first-letter:text-7xl first-letter:mr-3 first-letter:float-left">
             {{livro.informacaoes}}
             {% if livro.fonte_informacao %}
-            <a href="{{livro.fonte_informacao}}" target="_blank" class="ml-3 text-purple-400"> Fonte </a>
+            <a href="{{livro.fonte_informacao}}" target="_blank" class="ml-3 text-purple-400 "> Fonte </a>
             {% endif %}
             </p>
     </div>
-    {% for autor in autores %}
-    <p>{{autor.autor}}</p>
-    {% endfor %}
-    <div>
-        <img src="{{capa_url}}/{{livro.id}}.jpg"  class=" mt-2 rounded-lg" alt="{{livro.titulo}}" width="150px">
-    </div>
+    
+    <div class="flex flex-col justify-center items-center">
+    <p class="text-xl text-purple-500 mt-2 p-1">Autores do Livro:</p>
+    <ul class="justify-center mb-3">
+        {% for autor in autores %}
+        <li class="hover:bg-purple-500 p-1 rounded-md">
+            <a href="{% url 'autor' autor.autor.id %}">
+                {{autor.autor}}
+            </a>
+        </li>
+        {% endfor %}
+            
+    </ul>
 </div>
 {% endblock %}

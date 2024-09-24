@@ -2,7 +2,7 @@
 MODELS da aplicação Biblioteca
 '''
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
+
 
 class Autor(models.Model):
     '''
@@ -64,7 +64,3 @@ class LivrosDoAutor(models.Model):
         Meta LivrosDoAutor
         '''
         db_table = 'livros_do_autor'
-
-
-# class CustomUser(AbstractUser):
-#     bio = models.CharField(max_length=128, null=True, blank=True)

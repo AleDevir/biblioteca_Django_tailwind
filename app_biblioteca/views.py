@@ -11,9 +11,10 @@ from django.shortcuts import (
 )
 from django.urls import reverse
 from django.contrib.auth import login
-# from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
 from .models import Autor, LivrosDoAutor, Livro
-from .forms import PesquisarLivroForm, RegistrationForm
+from .forms import PesquisarLivroForm, RegistrationForm, PesquisarAutorForm
+
 
 def sign_up(request):
     '''
@@ -28,8 +29,6 @@ def sign_up(request):
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
-
-
 
 def home(request) -> HttpResponse:
     '''
@@ -121,11 +120,19 @@ def autores(request) -> HttpResponse:
     '''
     Autores
     '''
+    if request.method == "POST":
+        nome = request.POST['nome']
+        um_autor = Autor.objects.filter(nome__icontains=nome).first()
+        if um_autor:
+            return HttpResponseRedirect(reverse("autor", args=(um_autor.id,)))
+        raise Http404(f"Autor de nome {nome} não encontrado!")
+
     lista = Autor.objects.order_by('nome')
-    contexto = {
-        'autores': lista
-    }
-    return render(request, 'autores.html', context=contexto)
+    form = PesquisarAutorForm()
+    return render(request, 'autores.html', {
+        "form": form,
+        "autores": lista,
+    })
 
 def livros(request) -> HttpResponse:
     '''
@@ -133,7 +140,6 @@ def livros(request) -> HttpResponse:
     '''
     if request.method == "POST":
         titulo = request.POST['titulo']
-        # lista = Livro.objects.filter(titulo__icontains=titulo)
         um_livro = Livro.objects.filter(titulo__icontains=titulo).first()
         if um_livro:
             return HttpResponseRedirect(reverse("livro", args=(um_livro.id,)))
@@ -146,6 +152,7 @@ def livros(request) -> HttpResponse:
         "livros": lista,
     })
 
+
 def livro(request, livro_id: int) -> HttpResponse:
     '''
     livro
@@ -153,7 +160,6 @@ def livro(request, livro_id: int) -> HttpResponse:
     try:
         um_livro = Livro.objects.get(pk=livro_id)
     except Livro.DoesNotExist as not_found:
-        print(f"not_found 404 {not_found}")
         raise Http404(
             f"Livro não encontrado! O Livro de ID={livro_id} não existe na base de dados."
         ) from not_found
@@ -165,19 +171,4 @@ def livro(request, livro_id: int) -> HttpResponse:
     }
 
     return render(request, 'livro.html', context=contexto)
-
-
-# def register(request):
-#     '''
-#     Registro
-#     '''
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('home')
-#     else:
-#         form = CustomUserCreationForm()
-#     return render(request, 'register.html', {'form': form})
 

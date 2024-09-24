@@ -6,20 +6,32 @@
 
 <div class="flex flex-col items-center justify-center">
 <div class="flex flex-col items-center mt-11">   
-    
-    <h1 class="text-2xl text-purple-400 mb-5 first-letter:text-7xl first-letter first-letter:float-left:align-middle"> {{ autor.nome }}</h1>
+    <h1 class="text-2xl text-purple-400 mb-5 first-letter:text-5xl  first-letter:float-left:align-middle"> {{ autor.nome }}</h1>
 </div>
 <img src="{{autor_url}}/{{autor.id}}.jpg"  width="100px" alt="imagem do autor" class="mb-5 mr-2 rounded"/> 
-
-<div class="flex flex-row w-1/2  p-4 mx-8">
-        <p class="p-4 min-w-full mr-3 text-justify">
+<a href="javascript:history.back()" class=" text-2xl text-purple-800 hover:text-purple-500 ">
+    <<
+</a>
+<div class="flex flex-row w-1/2 ">
+        <p class="p-4 min-w-full mr-3 text-justify first-line:tracking-widest
+  first-letter:text-7xl first-letter:mr-3 first-letter:float-left">
         {{autor.informacaoes}}
         {% if autor.fonte_informacao %}
         <a href="{{autor.fonte_informacao}}" target="_blank" class="ml-3 text-purple-400"> Fonte </a>
         {% endif %}
-    </p>
-       
+        </p>     
 </div>
+<p class=" text-xl text-purple-500">Livros do Autor:</p>
+        <ul class="justify-center mb-3">
+            {% for livro_autor in livros %}
+            <li class="hover:bg-purple-500 p-1 rounded-md">
+                <a href="{% url 'livro' livro_autor.livro.id %}">
+                    {{livro_autor.livro.titulo}}
+                </a>
+            </li>
+            {% endfor %}
+            
+        </ul>
 
 </div>
 
