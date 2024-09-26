@@ -64,3 +64,4 @@ class LivrosDoAutor(models.Model):
         Meta LivrosDoAutor
         '''
         db_table = 'livros_do_autor'
+
