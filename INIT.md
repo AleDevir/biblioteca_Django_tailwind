@@ -6,6 +6,8 @@ pip install pylint-django
 
 python -m pip install django-tailwind
 
+python -m pip install crispy-tailwind
+
 # Recarregamentos automáticos de página durante o desenvolvimento - tailwind
 python -m pip install django-tailwind[reload]
 
@@ -103,13 +105,3 @@ from .models import Autor
 admin.site.register(Autor)
 ```
 
-## Biblioteca para uso de imagens no db:
-```
-python -m pip install Pillow
-```
-
-[crispy-tailwind](https://github.com/django-crispy-forms/crispy-tailwind)
-## Formuario Django:
-```
-python -m pip install crispy-tailwind
-```
