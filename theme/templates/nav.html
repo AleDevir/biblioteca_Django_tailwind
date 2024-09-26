@@ -9,8 +9,8 @@
       <a href="/" class="font-bold p-1  text-purple-300 rounded-md hover:bg-purple-400 hover:text-slate-900">Home</a>
       <a href="{% url 'autores' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Autores</a>
         <a href="{% url 'livros' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Livros</a>        
-        <a href="{% url 'password_change' %}" class="p-1 has-tooltip font-bold text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900" href="/">
-        <p class=" p-1 tooltip font-bold text-purple-300 rounded-lg  mt-5"> Meus dados
+        <a href="{% url 'user_edit' user.id %}" class="p-1 has-tooltip font-bold text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900" >
+        <p class=" p-1 tooltip font-bold text-purple-300 rounded-lg  mt-6"> Meus dados
         
         </p> 
         Olá, {{ user.get_username }}

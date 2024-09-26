@@ -23,6 +23,19 @@ class RegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
+class EditForm(UserCreationForm):
+    '''
+    Registra Usuário
+    '''
+   
+    class Meta:
+        '''
+        Metamodelo
+        '''
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+
 class PesquisarLivroForm(ModelForm):
     '''
     Pesquisar livro    
