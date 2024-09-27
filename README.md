@@ -1,3 +1,9 @@
+
+# Instalar o node Models na aplicação em \<aplicaçõa>\theme\static_scr:
+```
+npm install
+```
+
 ## Iniciar o Django Tailwind no modo de desenvolvimento:
 ```
 python manage.py tailwind start
@@ -28,3 +34,4 @@ python manage.py makemigrations app_biblioteca
 ```
 python manage.py migrate
 ```
+
