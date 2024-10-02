@@ -935,6 +935,9 @@ select {
   margin-right: 0.75rem /* 12px */;
 }
 
+.mr-8 {
+  margin-right: 2rem /* 32px */;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }

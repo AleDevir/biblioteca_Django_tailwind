@@ -9,14 +9,20 @@
 		{% tailwind_css %}
 	</head>
 
-	<body class="dark:text-slate-400 bg-white dark:bg-slate-900 font-serif">
+	<body class="dark:text-slate-400 bg-white dark:bg-slate-900 font-serif ">
 		{% include "nav.html" %}
+		
 
-		<div class=" w-screen  h-screen pt-11">
-			
+		<div class="  pt-11 w-screen h-screen ">
+	
 				{% block content %}
+		
 				{% endblock %}
-				
+		<footer class=" mt-11 flex flex-row justify-center space-x-4 p-2 h-20  bg-purple-800 items-center ">
+			<p>
+				Copyright © 2024 Biblioteca Virtual. All Rights Reserved.
+			</p>
+		</footer>
 		</div>
 	</body>
 </html>
