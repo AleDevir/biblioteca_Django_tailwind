@@ -14,7 +14,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Autor, LivrosDoAutor, Livro
-from .forms import PesquisarLivroForm, RegistrationForm, PesquisarAutorForm, EditForm
+from .forms import PesquisarLivroForm, RegistrationForm, PesquisarAutorForm
 
 
 def sign_up(request):
@@ -32,49 +32,29 @@ def sign_up(request):
     return render(request, 'register.html', {'form': form})
 
 
+
 def user_edit(request, user_id: int) -> HttpResponse:
     '''
     Editar usuário
     '''
+   
     try:
         um_usuario = User.objects.get(pk=user_id)
-        if um_usuario:
-            form = EditForm(request.POST)
-            if form.is_valid():
-                user = form.save()
-                login(request, user)
-                return redirect('home')
-        else:
-            form = EditForm()
-
     except User.DoesNotExist as not_found:
         raise Http404(
             f"Usuário não encontrado! O Usuário de ID={user_id} não existe na base de dados."
         ) from not_found
-    
-   
-    return render(request, 'user_edit.html', {'usuario': um_usuario})
+
+    contexto = {
+        'usuario': um_usuario
+    }
+    return render(request, 'user_edit.html', context=contexto)
 
 
-# def user_edit(request, user_id: int) -> HttpResponse:
-#     '''
-#     Editar usuário
-#     '''
-#     try:
-#         um_usuario = User.objects.get(pk=user_id)
-#     except User.DoesNotExist as not_found:
-#         raise Http404(
-#             f"Usuário não encontrado! O Usuário de ID={user_id} não existe na base de dados."
-#         ) from not_found
-
-#     contexto = {
-#         'usuario': um_usuario
-#     }
-#     return render(request, 'user_edit.html', context=contexto)
 
 def user_save(request, user_id: int) -> HttpResponse:
     '''
-    Autor
+    Salvar edição de usuário
     '''
     try:
         if user_id == 0:
@@ -88,10 +68,27 @@ def user_save(request, user_id: int) -> HttpResponse:
     
     um_usuario.username = request.POST["username"]
     um_usuario.email = request.POST["email"]
-    # um_autor.criado_em = request.POST["criado_em"]
-    # um_autor.criado_em = request.POST["criado_em"]
+
     um_usuario.save()
-    return HttpResponseRedirect(reverse("home", args=(user_id,)))
+    return HttpResponseRedirect(reverse("home"))
+
+def password_edit(request, user_id: int) -> HttpResponse:
+    '''
+    Editar senha
+    '''
+   
+    try:
+        um_usuario = User.objects.get(pk=user_id)
+    except User.DoesNotExist as not_found:
+        raise Http404(
+            f"Usuário não encontrado! O Usuário de ID={user_id} não existe na base de dados."
+        ) from not_found
+
+    contexto = {
+        'usuario': um_usuario
+    }
+    return render(request, 'password_edit.html', context=contexto)
+
 
 def home(request) -> HttpResponse:
     '''
@@ -157,7 +154,6 @@ def autor_edit(request, autor_id: int) -> HttpResponse:
         'autor': um_autor
     }
     return render(request, 'autor_edit.html', context=contexto)
-
 
 def autor_save(request, autor_id: int) -> HttpResponse:
     '''

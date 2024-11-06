@@ -11,6 +11,9 @@ python -m pip install crispy-tailwind
 # Recarregamentos automáticos de página durante o desenvolvimento - tailwind
 python -m pip install django-tailwind[reload]
 
+#Testes
+python -m pip install django-test
+
 ```
 
 ## 01. Criar o projeto:

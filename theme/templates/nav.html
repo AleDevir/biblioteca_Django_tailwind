@@ -2,7 +2,8 @@
 {% static 'icones/login.png' as login_url %}
 {% static 'icones/logout.png' as logout_url %}
 
-<div class="w-full fixed">
+<div class="w-full fixed z-50">
+
     <nav class="flex flex-row space-x-4 p-2 justify-between bg-purple-800 items-center ">
       {% if user.is_authenticated %}
       
@@ -25,5 +26,8 @@
         <a href="{% url 'sign_up' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900">Sign</a>
         <a href="{% url 'login' %}" class="font-bold p-1 text-purple-300 rounded-lg hover:bg-purple-400 hover:text-slate-900"><img src="{{ login_url}}" width="25"/></a>
       {% endif %}
+  
     </nav>
+
+   
 </div>
