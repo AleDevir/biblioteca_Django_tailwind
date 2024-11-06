@@ -90,7 +90,6 @@ def password_edit(request, user_id: int) -> HttpResponse:
     return render(request, 'password_edit.html', context=contexto)
 
 
-
 def home(request) -> HttpResponse:
     '''
     Home
@@ -155,7 +154,6 @@ def autor_edit(request, autor_id: int) -> HttpResponse:
         'autor': um_autor
     }
     return render(request, 'autor_edit.html', context=contexto)
-
 
 def autor_save(request, autor_id: int) -> HttpResponse:
     '''
