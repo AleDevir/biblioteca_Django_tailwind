@@ -1,28 +1,26 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-    <title>Django Tailwind</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		{% tailwind_css %}
-	</head>
 
-	<body class="dark:text-slate-400 bg-white dark:bg-slate-900 font-serif ">
-		{% include "nav.html" %}
-		
+<head>
+	<title>Django Tailwind</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% tailwind_css %}
+</head>
 
-		<div class="  pt-11 w-screen h-screen ">
-	
-				{% block content %}
-		
-				{% endblock %}
-		<footer class=" mt-11 flex flex-row justify-center space-x-4 p-2 h-20  bg-purple-800 items-center ">
-			<p>
-				Copyright © 2024 Biblioteca Virtual. All Rights Reserved.
-			</p>
-		</footer>
-		</div>
-	</body>
+<body class="dark:text-slate-400 bg-white dark:bg-slate-900 font-serif">
+	{% include "nav.html" %}
+
+
+	<div class="  pt-11 padding-bottom: 100px">
+
+		{% block content %}
+
+		{% endblock %}
+
+	</div>
+</body>
+
 </html>
