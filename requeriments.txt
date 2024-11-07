@@ -1,0 +1,5 @@
+install Django
+pylint-django
+django-tailwind
+crispy-tailwind
+django-test main
