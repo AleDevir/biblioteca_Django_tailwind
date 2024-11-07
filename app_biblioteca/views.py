@@ -12,7 +12,6 @@ from django.shortcuts import (
 from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from .models import Autor, LivrosDoAutor, Livro
 from .forms import PesquisarLivroForm, RegistrationForm, PesquisarAutorForm
 
@@ -32,7 +31,6 @@ def sign_up(request):
     return render(request, 'register.html', {'form': form})
 
 
-
 def user_edit(request, user_id: int) -> HttpResponse:
     '''
     Editar usuário
@@ -49,7 +47,6 @@ def user_edit(request, user_id: int) -> HttpResponse:
         'usuario': um_usuario
     }
     return render(request, 'user_edit.html', context=contexto)
-
 
 
 def user_save(request, user_id: int) -> HttpResponse:
@@ -71,24 +68,6 @@ def user_save(request, user_id: int) -> HttpResponse:
 
     um_usuario.save()
     return HttpResponseRedirect(reverse("home"))
-
-def password_edit(request, user_id: int) -> HttpResponse:
-    '''
-    Editar senha
-    '''
-   
-    try:
-        um_usuario = User.objects.get(pk=user_id)
-    except User.DoesNotExist as not_found:
-        raise Http404(
-            f"Usuário não encontrado! O Usuário de ID={user_id} não existe na base de dados."
-        ) from not_found
-
-    contexto = {
-        'usuario': um_usuario
-    }
-    return render(request, 'password_edit.html', context=contexto)
-
 
 def home(request) -> HttpResponse:
     '''
@@ -171,8 +150,6 @@ def autor_save(request, autor_id: int) -> HttpResponse:
         ) from not_found
 
     um_autor.nome = request.POST["nome"]
-    # um_autor.criado_em = request.POST["criado_em"]
-    # um_autor.criado_em = request.POST["criado_em"]
     um_autor.save()
     return HttpResponseRedirect(reverse("autor", args=(autor_id,)))
 
@@ -211,7 +188,6 @@ def livros(request) -> HttpResponse:
         "form": form,
         "livros": lista,
     })
-
 
 def livro(request, livro_id: int) -> HttpResponse:
     '''

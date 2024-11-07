@@ -20,7 +20,6 @@ urlpatterns = [
     path("livro/<int:livro_id>", views.livro, name='livro'),
     path("register/", views.sign_up, name='sign_up'),
     path("user_edit/<int:user_id>", views.user_edit, name='user_edit'),
-    path("password_edit/<int:user_id>", views.password_edit, name='password_edit'),
     path("user_save/<int:user_id>", views.user_save, name='user_save'),
 
 ]
