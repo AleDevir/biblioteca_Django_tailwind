@@ -1,37 +1,11 @@
+![bib-virt](https://github.com/user-attachments/assets/fec28510-557c-4cc0-b147-4915a46dce26)
 
-# Instalar o node Models na aplicação em \<aplicaçõa>\theme\static_scr:
-```
-npm install
-```
 
-## Iniciar o Django Tailwind no modo de desenvolvimento:
-```
-python manage.py tailwind start
-```
+# ${\color {#640b8a} Biblioteca\ Virtual}$  
 
-## Rodar o projeto / aplicação:
-```
-python manage.py runserver
 
-# Para usar  modelo django exceptions usando o style css:
-python manage.py runserver --insecure
 
+Comando para instalação dos pacotes:
 ```
-
-## pylint
+pip install -r requirements.txt
 ```
-pylint --load-plugins pylint_django --django-settings-module=biblioteca.settings biblioteca app_biblioteca
-
-```
-## migrations
-
-### registrar as alterações em migrations
-```
-python manage.py makemigrations app_biblioteca
-```
-
-### Aplicar as alterações de migrations no db
-```
-python manage.py migrate
-```
-
